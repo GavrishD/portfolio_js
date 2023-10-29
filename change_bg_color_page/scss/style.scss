@@ -1,0 +1,61 @@
+@import "reset.scss";
+
+// Fonts-------------------------------------------------------------------------
+@import url('https://fonts.googleapis.com/css?family=Roboto:regular,700&display=swap');
+
+// ------------------------------------------------------------------------------
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 180px 0 0 0;
+    font:
+        32px/1.818 "Roboto", "Segoe UI", Helvetica, Arial,
+        sans-serif;
+    color: #fff;
+    transition: all 0.3s ease 0s;
+}
+
+img {
+    position: relative;
+    right: -250px;
+    width: 340px;
+    height: 243px;
+}
+
+div {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 15px 44px;
+    margin-top: -50px;
+    font-size: 67px;
+    background-color: #000;
+
+    h1 {
+        font-weight: 700;
+    }
+
+    p {
+        font-weight: 400;
+        
+    }
+}
+
+button {
+    margin: 100px 0 0 0;
+    width: 284px;
+    height: 72px;
+    font-weight: 700;
+    background-color: #000;
+    border-radius: 17px;
+    transition: all 0.3s ease 0s;
+
+    @media (any-hover: hover) {
+        &:hover {
+            background-color: transparent;
+            color: #000;
+            border: 5px solid #000;
+        }
+    }
+}
