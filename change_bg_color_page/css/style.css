@@ -75,12 +75,14 @@ body {
 
 img {
   position: relative;
-  right: -250px;
-  width: 340px;
-  height: 243px;
+  top: 27px;
+  right: -210px;
+  width: 267px;
+  height: 265px;
 }
 
 div {
+  z-index: 2;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
