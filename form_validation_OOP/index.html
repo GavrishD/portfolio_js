@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <title>Form</title>
+    </head>
+    <body>
+        <header>
+                <h1>Create Account</h1>
+        </header>
+        <main>
+            <form action oninput="outputId.value = income.value + 'K'">
+                <div class="user-name">
+                    <div class="name">
+                        <label for="first-name">First name*</label>
+                        <input required type="text" id="first-name" placeholder="Enter your first name" onchange="Validator.checkName(this)">
+                        <div class="input-error-label">The form field First Name and Last Name is filled in only Latin letters</div>
+                    </div>
+                    <div class="name">
+                        <label for="last-name">Last name*</label>
+                        <input required type="text" id="last-name" placeholder="Enter your last name" onchange="Validator.checkName(this)">
+                        <div class="input-error-label">The form field First Name and Last Name is filled in only Latin letters</div>
+                    </div>
+                </div>
+                <div class="user-email">
+                    <label for="email">Email*</label>
+                    <input required type="email" id="email" placeholder="Enter your email" onchange="Validator.checkEmail(this)">
+                    <div class="input-error-label">Please enter a valid email address</div>
+                </div>
+                <div class="user-password">
+                    <div class="password">
+                        <label for="userPassword">Password*</label>
+                        <input required type="password" id="userPassword" minlength="8" maxlength="20" placeholder="Enter your password" onchange="Validator.checkPassword(this)">
+                        <div class="input-error-label">The password must contain from 8 to 20 characters - at least one uppercase letter, one lowercase letter and one number</div>
+                    </div>
+                    <div class="password confirm">
+                        <label for="сonfirmPassword">Confirm password*</label>
+                        <input required type="password" id="сonfirmPassword" minlength="8" maxlength="20" placeholder="Enter your confirm password" onchange="Validator.confirmPassword(this)">
+                        <div class="input-error-label">Password mismatch</div>
+                    </div>
+                </div>
+                <div class="user-choice">
+                    <div class="gender">
+                        <p>Gender:</p>
+                        <div class="choice">
+                            <div class="choice-radio">
+                                <input checked type="radio" id="male" name="gender">
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="choice-radio">
+                                <input type="radio" id="female" name="gender">
+                                <label for="female">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hobbies">
+                        <p>Hobbies</p>
+                        <div class="hobbies-group">
+                            <input type="checkbox" id="music">
+                            <label for="music">Music</label>
+                            <input checked type="checkbox" id="sports">
+                            <label for="sports">Sports</label>
+                            <input type="checkbox" id="travel">
+                            <label for="travel">Travel</label>
+                            <input checked type="checkbox" id="movies">
+                            <label for="movies">Movies</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-income">
+                    <div class="source-income">
+                        <label for="sourseIncome">Source of Income</label>
+                        <select name="sourseOfIncome" id="sourseIncome">
+                            <option value="Employed" selected>Employed</option>
+                            <option value="Unemployed">Unemployed</option>
+                        </select>
+                    </div>
+                    <div class="income">
+                        <p>Income</p>
+                        <div class="income-sum">
+                            <input type="range" name="income" id="income" step="1" min="0" max="100" value="0">
+                            <output for="income" name="result" id="outputId">0</output>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <div class="profile">
+                        <p>Upload profile picture</p>
+                        <div class="upload-profile">
+                            <label for="picture">Choose file</label>
+                            <input type="file" id="picture" accept=".jpg, .jpeg, .png" style="visibility:hidden;">
+                            <div class="info-file">No file chosen</div>
+                        </div>
+                    </div>
+                    <div class="age">
+                        <label for="age">Age</label>
+                        <input type="text" id="age" placeholder="Enter your age">
+                    </div>
+                </div>
+                <div class="user-bio">
+                    <div class="bio">
+                        <label for="bio">Bio</label>
+                        <textarea name="bio" id="bio" placeholder="Tell about yourself"></textarea>
+                    </div>
+                    <div class="create-button">
+                        <button>Create</button>
+                    </div>
+                </div>
+            </form>
+        </main>
+        <script src="js/script.js"></script>
+    </body>
+</html>
