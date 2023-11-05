@@ -5,11 +5,11 @@
 
 // ------------------------------------------------------------------------------
 :root {
-    --bg-color: #F8F8F8;
+    --bg-color: #252025;
     --gray: #AEAEAE;
     --light-gray: #D9D9D9;
-    --orange: #FF3D00;
-    --dark-orange: #CA2F00;
+    --yellow: #FEB946;
+    --dark-yellow: #C58419;
 }
 // ------------------------------------------------------------------------------
 [class*="-container"] {
@@ -34,14 +34,15 @@ h1 {
     font-size: 40px;
     font-weight: 700;
     border-bottom: 1px solid var(--gray);
+    color: #fff;
         
     span {
-        background: var(--orange);
-        color: #fff;
+        background: var(--yellow);
     }
 }
 
 h2 {
+    color: var(--yellow);
     font-size: 23px;
     font-weight: 600;
 
@@ -64,19 +65,19 @@ h2 {
         white-space: nowrap;
         font-size: 24px;
         font-weight: 400;
-        color: var(--orange);
+        color: var(--yellow);
         border-radius: 7px;
-        border: 1px solid var(--orange);
+        border: 1px solid var(--yellow);
 
         &.active {
             color: #fff;
-            background-color: var(--orange);
+            background-color: var(--yellow);
         }
 
         @media (any-hover: hover) {
             &:hover {
                 color: #fff;
-                background-color: var(--orange);
+                background-color: var(--yellow);
             }
         }
     }
@@ -89,9 +90,10 @@ h2 {
     display: none;
 
     img {
+        position: relative;
         width: 237px;
         height: 160px;
-        border-radius: 7px;
+        border-radius: 8px;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         transition: all 0.3s ease 0s;
 
@@ -123,7 +125,9 @@ h2 {
     justify-content: space-between;
 
     p {
+        color: #fff;
         font-weight: 300;
+        letter-spacing: 0.3px;  
     }
 
     a {
@@ -148,17 +152,17 @@ header {
         cursor: pointer;
         font-size: 14px;
         font-weight: 600;
-        color: var(--orange);
+        color: var(--yellow);
         background: url(../img/icon.svg) left no-repeat;
         transition: all 0.3s ease 0s;
 
         &:hover {
-            color: var(--dark-orange);
+            color: var(--dark-yellow);
         }
     }
 }
 .more-link {
-    color: var(--orange);
+    color: var(--yellow);
 
     @media (any-hover: hover) {
         &:hover {
