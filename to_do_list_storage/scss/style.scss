@@ -1,0 +1,207 @@
+@import "reset.scss";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,regular,500,700&display=swap');
+
+@font-face {
+    font-family: 'icons';
+    src:
+        url('../fonts/icons.ttf?ggsu4f') format('truetype'),
+        url('../fonts/icons.woff?ggsu4f') format('woff'),
+        url('../fonts/icons.svg?ggsu4f#icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icons' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-clear:before {
+    content: "\e900";
+}
+.icon-delete:before {
+    content: "\e901";
+}
+.icon-safe:before {
+    content: "\e902";
+}
+// Color-----------------------------------------------------------------------
+:root {
+    --gray: #D2D2D2;
+    --bg-input: #F0F5F8;
+    --red: #FF0000;
+    --green: #00C45A;
+    --btn-gray: #949494;
+    --clr-gray: #989898;
+
+
+
+    --light-gray: #DDDDDD;
+    --dark-gray: #676767;
+    --orange: #FF4F00;
+}
+
+// ----------------------------------------------------------------------------
+body {
+    position: relative;
+    margin: 0 auto;
+    min-height: 100%;
+    max-width: 640px;
+    padding: 0 24px;
+    font:
+        14px/1.458 Arial, "Segoe UI", "Roboto", Helvetica,
+        sans-serif;
+    font-weight: 400;
+}
+header {
+    display: flex;
+    justify-content: center;
+    padding: 35px 0;
+
+    img {
+        max-width: 120px;
+    }
+}
+img {
+    max-width: 100%;
+}
+
+.list-form {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 15px 0;
+    border: 1px solid var(--gray);
+    border-radius: 61px;
+    background-color: var(--bg-input);
+
+    input {
+        padding: 0 20px;
+        border: none;
+        outline: none;
+        width: 100%;
+        background-color: var(--bg-input); 
+        border-radius: 61px;
+    }
+    // input:valid ~ .search-cancel {
+    //     display: block;
+    // }
+}
+.list-button {
+    width: 257px;
+    height: 45px;
+    border: 0;
+    background-color: var(--red);
+    color: #fff;
+    border-radius: 61px;
+    transition: background 200ms;
+    outline: none;
+
+    &.green {
+        background-color: var(--green);
+    }
+}
+.empty-list {
+    text-align: center;
+    padding: 20px 0;
+    border-radius: 10px;
+    color: var(--btn-gray);
+    font-size: 24px;
+    background-color: var(--bg-input);
+
+    &.none-empty-list {
+        display: none !important;
+    }
+
+}
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px 30px;
+    border-radius: 79px;
+    background-color: var(--bg-input); 
+
+}
+.todo-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+.todo-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.icon-safe {
+    padding: 8px 13px;
+    color: #fff;
+    border-radius: 10px;
+    background-color: var(--red);
+
+    &.checked {
+        background-color: var(--green);
+    }
+}
+// .--checked {
+//     background-color: var(--green);
+// }
+.icon-delete {
+    padding: 8px 5px;
+    color: var(--btn-gray);
+
+    @media (any-hover: hover) {
+        &:hover {
+            color: var(--red);
+        }
+    }
+}
+.icon-safe,
+.icon-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    span {
+        font-family: "Roboto";
+        font-size: 8px;
+    }
+}
+.icon-safe,
+.icon-delete {
+    font-size: 18px;
+}
+.clean {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    margin: 25px 0 0 0;
+    color: var(--clr-gray);
+    cursor: pointer;
+
+    span {
+        font-size: 10px;
+        text-transform: uppercase;
+    }
+
+    &--checked-clean {
+        background-color: var(--red);
+    }
+}
+.icon-clear {
+    font-size: 18px;
+}
