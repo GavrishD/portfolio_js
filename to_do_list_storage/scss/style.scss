@@ -1,6 +1,7 @@
 @import "reset.scss";
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,regular,500,700&display=swap');
 
+// Icons font-----------------------------------------------------------------------
 @font-face {
     font-family: 'icons';
     src:
@@ -25,15 +26,6 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-clear:before {
-    content: "\e900";
-}
-.icon-delete:before {
-    content: "\e901";
-}
-.icon-safe:before {
-    content: "\e902";
-}
 // Color-----------------------------------------------------------------------
 :root {
     --gray: #D2D2D2;
@@ -42,12 +34,7 @@
     --green: #00C45A;
     --btn-gray: #949494;
     --clr-gray: #989898;
-
-
-
-    --light-gray: #DDDDDD;
-    --dark-gray: #676767;
-    --orange: #FF4F00;
+    --border-color: #5C5C5C;
 }
 
 // ----------------------------------------------------------------------------
@@ -74,7 +61,6 @@ header {
 img {
     max-width: 100%;
 }
-
 .list-form {
     position: relative;
     display: flex;
@@ -92,22 +78,19 @@ img {
         background-color: var(--bg-input); 
         border-radius: 61px;
     }
-    // input:valid ~ .search-cancel {
-    //     display: block;
-    // }
 }
 .list-button {
     width: 257px;
     height: 45px;
     border: 0;
-    background-color: var(--red);
+    background-color: var(--green);
     color: #fff;
     border-radius: 61px;
     transition: background 200ms;
     outline: none;
 
-    &.green {
-        background-color: var(--green);
+    &.edit {
+        background-color: var(--red);
     }
 }
 .empty-list {
@@ -121,7 +104,6 @@ img {
     &.none-empty-list {
         display: none !important;
     }
-
 }
 .todo-item {
     display: flex;
@@ -131,11 +113,19 @@ img {
     padding: 10px 30px;
     border-radius: 79px;
     background-color: var(--bg-input); 
+    cursor: pointer;
 
+    &.edit-item {
+        border: 1px solid var(--border-color);
+    }
 }
 .todo-title {
     font-size: 16px;
     font-weight: 600;
+
+    &.todo-title-done {
+        color: var(--btn-gray);
+    }
 }
 .todo-buttons {
     display: flex;
@@ -148,16 +138,21 @@ img {
     border-radius: 10px;
     background-color: var(--red);
 
+    &:before {
+        content: "\e902";
+    }
+
     &.checked {
         background-color: var(--green);
     }
 }
-// .--checked {
-//     background-color: var(--green);
-// }
 .icon-delete {
     padding: 8px 5px;
     color: var(--btn-gray);
+
+    &:before {
+        content: "\e901";
+    }
 
     @media (any-hover: hover) {
         &:hover {
@@ -183,25 +178,31 @@ img {
 .icon-delete {
     font-size: 18px;
 }
-.clean {
+.icon-clear {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
     gap: 3px;
-    margin: 25px 0 0 0;
+    width: 90px;
+    margin: 25px auto 0 auto;
+    padding: 5px;
     color: var(--clr-gray);
     cursor: pointer;
+    transition: all 0.3s;
+    
+    &:before {
+        content: "\e900";
+    }
 
     span {
-        font-size: 10px;
+        font-family: "Roboto";
+        font-size: 12px;
         text-transform: uppercase;
     }
-
-    &--checked-clean {
-        background-color: var(--red);
+    
+    @media (any-hover: hover) {
+        &:hover {
+            color: var(--red);
+        }
     }
-}
-.icon-clear {
-    font-size: 18px;
 }
