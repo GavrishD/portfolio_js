@@ -106,11 +106,7 @@ header img {
   max-width: 120px;
 }
 
-img {
-  max-width: 100%;
-}
-
-.list-form {
+.task-form {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -123,7 +119,7 @@ img {
   border-radius: 61px;
   background-color: var(--bg-input);
 }
-.list-form input {
+.task-form input {
   padding: 0 20px;
   border: none;
   outline: none;
@@ -132,7 +128,7 @@ img {
   border-radius: 61px;
 }
 
-.list-button {
+.task-button {
   width: 257px;
   height: 45px;
   border: 0;
@@ -144,7 +140,7 @@ img {
   transition: background 200ms;
   outline: none;
 }
-.list-button.edit {
+.task-button.edit {
   background-color: var(--red);
 }
 
@@ -173,6 +169,7 @@ img {
   margin: 10px 0;
   padding: 10px 30px;
   border-radius: 79px;
+  border: 1px transparent;
   background-color: var(--bg-input);
   cursor: pointer;
 }
@@ -198,16 +195,16 @@ img {
   gap: 10px;
 }
 
-.icon-safe {
+.icon-done {
   padding: 8px 13px;
   color: #fff;
   border-radius: 10px;
   background-color: var(--red);
 }
-.icon-safe:before {
+.icon-done:before {
   content: "\e902";
 }
-.icon-safe.checked {
+.icon-done.checked {
   background-color: var(--green);
 }
 
@@ -224,7 +221,7 @@ img {
   }
 }
 
-.icon-safe,
+.icon-done,
 .icon-delete {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -242,18 +239,27 @@ img {
   transition: all 0.3s;
   cursor: pointer;
 }
-.icon-safe span,
+.icon-done span,
 .icon-delete span {
   font-family: "Roboto";
   font-size: 8px;
 }
 
-.icon-safe,
+.icon-done,
 .icon-delete {
   font-size: 18px;
 }
 
-.icon-clear {
+.clean-button {
+  display: none;
+}
+.clean-button.visible-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.icon-clean {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -274,16 +280,16 @@ img {
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
-.icon-clear:before {
+.icon-clean:before {
   content: "\e900";
 }
-.icon-clear span {
+.icon-clean span {
   font-family: "Roboto";
   font-size: 12px;
   text-transform: uppercase;
 }
 @media (any-hover: hover) {
-  .icon-clear:hover {
+  .icon-clean:hover {
     color: var(--red);
   }
 }
