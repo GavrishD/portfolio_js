@@ -1,5 +1,5 @@
 // Finding elements on the page
-const form = document.querySelector("#toDoForm");
+const form = document.querySelector("#todoForm");
 const taskInput = document.querySelector("#taskInput");
 const tasksList = document.querySelector("#tasksList");
 
@@ -34,7 +34,7 @@ function addTask(event) {
     
     if (taskElement) {
         tasks = tasks.map((task) => { 
-            if (task.id === Number(taskElement.id)) {
+            if (task.id === taskElement.id) {
                 task.text = taskInput.value;
                 taskToSave = task;
             } 
@@ -44,13 +44,13 @@ function addTask(event) {
         taskTitle.innerText = taskToSave.text;
         taskElement.classList.remove('edit-item');
 
-        const submitButton = document.querySelector(".list-button");
+        const submitButton = document.querySelector(".task-button");
         submitButton.classList.remove("edit");
         submitButton.textContent = "Save";
     } else {
         // Describe the task as an object
         taskToSave = {
-            id: Date.now(),
+            id: Date.now().toString(),
             text: inputText,
             done: false,
         }
@@ -78,7 +78,7 @@ function deleteTask(event, taskId) {
     const parentNode = document.getElementById(taskId);
 
     // Delete a task through array filtering
-    tasks = tasks.filter( (task) => task.id !== taskId);
+    tasks = tasks.filter((task) => task.id !== taskId);
 
     // Save the list of tasks in LocalStorage
     saveToLocalStorage();
@@ -96,17 +96,21 @@ function doneTask(event, taskId) {
     const parentNode = document.getElementById(taskId);
 
     // Defining task IDs
-    const task = tasks.find((task) => task.id === taskId);
-    task.done = !task.done
-
+    tasks = tasks.map((task) => {
+        if (task.id === taskId) {
+            task.done = !task.done;
+        } 
+        return task;
+    })
+    
     // Save the list of tasks in LocalStorage
     saveToLocalStorage();
 
     const todoTitle = parentNode.querySelector('.todo-title');
     todoTitle.classList.toggle("todo-title-done");
 
-    const buttonSafe = parentNode.querySelector(".icon-safe");
-    buttonSafe.classList.toggle("checked");
+    const buttonDone = parentNode.querySelector(".icon-done");
+    buttonDone.classList.toggle("checked");
 
     checkCleanButton();
     event.stopPropagation();
@@ -122,26 +126,24 @@ function checkEmptyList() {
         const emptyListElement = document.querySelector("#emptyList");
         emptyListElement ? emptyListElement.remove() : null;
     }
-
-    removeCleanButton();
 }
 
 function saveToLocalStorage() {
-    localStorage.setItem('tasks', JSON.stringify(tasks))
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function renderTask(task) {
     // Form a CSS class for the task title and button "safe"
     const cssClassTitle = task.done ? "todo-title todo-title-done" : "todo-title";
-    const cssClassButton = task.done ? "icon-safe checked" : "icon-safe";
+    const cssClassButton = task.done ? "icon-done checked" : "icon-done";
 
     // Generating markup for a new task
     const toDoItemHTML = `
-        <li id="${task.id}" class="todo-item" onclick="chooseTask(${task.id})">
+        <li id=${task.id} class="todo-item" onclick="chooseTask('${task.id}')">
             <div class="${cssClassTitle}">${task.text}</div>
             <div class="todo-buttons">
-                <button type="button" data-action="done" class="${cssClassButton}" onclick="doneTask(event, ${task.id})"><span>Safe</span></button>
-                <button type="button" data-action="delete" class="icon-delete" onclick="deleteTask(event, ${task.id})"><span>Delete</span></button>
+                <button type="button" class="${cssClassButton}" onclick="doneTask(event, '${task.id}')"><span>Done</span></button>
+                <button type="button" class="icon-delete" onclick="deleteTask(event, '${task.id}')"><span>Delete</span></button>
             </div>
         </li>
     `;
@@ -150,26 +152,14 @@ function renderTask(task) {
     tasksList.insertAdjacentHTML("afterbegin", toDoItemHTML);
 }
 
-function removeCleanButton(){
-    const main = document.querySelector("main");
-    while (main.children.length > 3) {
-        main.removeChild(main.lastChild);
-    }
-}
-
 function checkCleanButton() {
-    if (tasks.length === 0) {
-        const cleanButton = document.querySelector(".icon-clear");
-        cleanButton ? cleanButton.remove() : null;
-    }
+    const cleanButton = document.querySelector(".clean-button");
+    cleanButton.classList.remove("visible-button");
 
     if (tasks.length > 0) {
-        const main = document.querySelector("main");
-        const cleanItems = `<button type="button" class="icon-clear" onclick="cleanAllTasks()"><span>Clean items</span></button>`;
-        main.insertAdjacentHTML("beforeend", cleanItems);
-
-        removeCleanButton();
-    }
+        const cleanButton = document.querySelector(".clean-button");
+        cleanButton.classList.add("visible-button");
+    } return tasks.length;
 }
 
 function chooseTask(taskId) {
@@ -179,23 +169,15 @@ function chooseTask(taskId) {
     const toDoItem = document.getElementById(taskId);
 
     const previousEditItem = tasksList.querySelector(".edit-item");
-    if (previousEditItem && Number(previousEditItem.id) !== taskId) {
+    if (previousEditItem && previousEditItem.id !== taskId) {
         previousEditItem.classList.remove("edit-item");
     }
 
     const editTask = toDoItem.classList.toggle("edit-item");
+    const submitButton = document.querySelector(".task-button");
+    submitButton.classList.toggle("edit");
 
-    if (editTask) {
-        const submitButton = document.querySelector(".list-button");
-        submitButton.classList.add("edit");
-        submitButton.textContent = "Edit" ;
-    } else {
-        const submitButton = document.querySelector(".list-button");
-        submitButton.classList.remove("edit");
-        submitButton.textContent = "Save" ;
-
-        taskInput.value = "";
-    }
+    editTask ? submitButton.textContent = "Edit" : submitButton.textContent = "Save";
 
     // Save the list of tasks in LocalStorage
     saveToLocalStorage();
@@ -206,7 +188,7 @@ function clear(elem) {
 }
 
 function cleanAllTasks() {
-    const cleanButton = document.querySelector('.icon-clear');
+    const cleanButton = document.querySelector('.icon-clean');
     cleanButton.parentNode.removeChild(cleanButton);
 
     clear(tasksList);
