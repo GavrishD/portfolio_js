@@ -157,7 +157,6 @@ function checkCleanButton() {
     cleanButton.classList.remove("visible-button");
 
     if (tasks.length > 0) {
-        const cleanButton = document.querySelector(".clean-button");
         cleanButton.classList.add("visible-button");
     } return tasks.length;
 }
