@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css">
-        <title>Task 2.6</title>
+        <title>Todo list</title>
     </head>
     <body>
             <header>
@@ -17,10 +17,9 @@
                         <button type="submit" class="task-button">Save</button>
                     </div>
                 </form>
+                <div id="emptyList" class="empty-list">To-do list is empty</div>
                 <ul id="tasksList"></ul>
-                <div class="clean-button">
-                    <button type="button" class="icon-clean" onclick="cleanAllTasks()"><span>Clean items</span></button>
-                </div>
+                <button type="button" class="clean-button" onclick="cleanAllTasks()"><span class="icon-clean"></span>Clean items</button>
             </main>
             <!-- <script src="js/withLocalStorage.js"></script> -->
             <script src="js/withCookies.js"></script>
