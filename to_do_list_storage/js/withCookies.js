@@ -2,6 +2,7 @@
 const form = document.querySelector("#todoForm");
 const taskInput = document.querySelector("#taskInput");
 const tasksList = document.querySelector("#tasksList");
+const submitButton = document.querySelector(".task-button");
 
 let tasks = [];
 
@@ -13,12 +14,8 @@ function getCookie(name) {
 
 if (getCookie("tasks")) {
     tasks = JSON.parse(getCookie("tasks"));
+    tasks.forEach( (task) => renderTask(task)); // Function for generating markup for a task
 }
-
-tasks.forEach(function (task) {
-    // Function for generating markup for a task
-    renderTask(task);
-})
 
 checkEmptyList();
 checkCleanButton();
@@ -49,7 +46,6 @@ function addTask(event) {
         taskTitle.innerText = taskToSave.text;
         taskElement.classList.remove('edit-item');
 
-        const submitButton = document.querySelector(".task-button");
         submitButton.classList.remove("edit");
         submitButton.textContent = "Save";
     } else {
@@ -114,7 +110,7 @@ function doneTask(event, taskId) {
     const todoTitle = parentNode.querySelector('.todo-title');
     todoTitle.classList.toggle("todo-title-done");
 
-    const buttonDone = parentNode.querySelector(".icon-done");
+    const buttonDone = parentNode.querySelector(".button-done");
     buttonDone.classList.toggle("checked");
 
     checkCleanButton();
@@ -122,14 +118,12 @@ function doneTask(event, taskId) {
 }
 
 function checkEmptyList() {
-    if (tasks.length === 0) {
-        const emptyList = `<li id="emptyList" class="empty-list">To-do list is empty</li>`;
-        tasksList.insertAdjacentHTML("afterbegin", emptyList);
-    }
+    const emptyList = document.querySelector("#emptyList");
+    emptyList.classList.remove("none-empty-list");
+    checkCleanButton();
 
     if (tasks.length > 0) {
-        const emptyListElement = document.querySelector("#emptyList");
-        emptyListElement ? emptyListElement.remove() : null;
+        emptyList.classList.add('none-empty-list');
     }
 }
 
@@ -140,9 +134,10 @@ function saveToCookies() {
 
     // Option 2
     let cookieDate =new Date();
-    cookieDate.setTime(cookieDate.getTime() + 1 * 24 * 60 * 60 * 1000);
+    const cookieStorageTime = 1 * 24 * 60 * 60 * 1000;
+    cookieDate.setTime(cookieDate.getTime() + cookieStorageTime);
     let expires = "expires=" + cookieDate.toUTCString();
-    document.cookie = `tasks=${JSON.stringify(tasks)}` + ";" + expires;
+    document.cookie = `tasks=${JSON.stringify(tasks)};${expires}`;
 }
 
 function deleteCookies() {
@@ -155,15 +150,15 @@ function deleteCookies() {
 function renderTask(task) {
     // Form a CSS class for the task title and button "safe"
     const cssClassTitle = task.done ? "todo-title todo-title-done" : "todo-title";
-    const cssClassButton = task.done ? "icon-done checked" : "icon-done";
+    const cssClassButton = task.done ? "button-done checked" : "button-done";
 
     // Generating markup for a new task
     const toDoItemHTML = `
         <li id=${task.id} class="todo-item" onclick="chooseTask('${task.id}')">
             <div class="${cssClassTitle}">${task.text}</div>
             <div class="todo-buttons">
-                <button type="button" class="${cssClassButton}" onclick="doneTask(event, '${task.id}')"><span>Done</span></button>
-                <button type="button" class="icon-delete" onclick="deleteTask(event, '${task.id}')"><span>Delete</span></button>
+                <button type="button" class="${cssClassButton}" onclick="doneTask(event, '${task.id}')"><span class="icon-done"></span>Done</button>
+                <button type="button" class="button-delete" onclick="deleteTask(event, '${task.id}')"><span class="icon-delete"></span>Delete</button>
             </div>
         </li>
     `;
@@ -178,7 +173,7 @@ function checkCleanButton() {
 
     if (tasks.length > 0) {
         cleanButton.classList.add("visible-button");
-    } return tasks.length;
+    } 
 }
 
 function chooseTask(taskId) {
@@ -187,16 +182,16 @@ function chooseTask(taskId) {
 
     const toDoItem = document.getElementById(taskId);
 
-    const previousEditItem = tasksList.querySelector(".edit-item");
-    if (previousEditItem && previousEditItem.id !== taskId) {
-        previousEditItem.classList.remove("edit-item");
+    const prevEditItem = tasksList.querySelector(".edit-item");
+    if (prevEditItem && prevEditItem.id !== taskId) {
+        prevEditItem.classList.remove("edit-item");
     }
 
     const editTask = toDoItem.classList.toggle("edit-item");
-    const submitButton = document.querySelector(".task-button");
     submitButton.classList.toggle("edit");
 
-    editTask ? submitButton.textContent = "Edit" : (submitButton.textContent = "Save", taskInput.value = "");
+    submitButton.textContent = editTask ? "Edit" : "Save";
+    taskInput.value = editTask ? taskInput.value : "";
 
     // Save the list of tasks in Cookie
     saveToCookies();
@@ -207,8 +202,7 @@ function clear(elem) {
 }
 
 function cleanAllTasks() {
-    const cleanButton = document.querySelector('.icon-clean');
-    cleanButton.parentNode.removeChild(cleanButton);
+    checkCleanButton();
 
     clear(tasksList);
     tasks.splice(0);
