@@ -195,34 +195,41 @@ header img {
   gap: 10px;
 }
 
-.icon-done {
+.button-done {
   padding: 8px 13px;
   color: #fff;
   border-radius: 10px;
   background-color: var(--red);
 }
-.icon-done:before {
-  content: "\e902";
-}
-.icon-done.checked {
+.button-done.checked {
   background-color: var(--green);
 }
 
-.icon-delete {
-  padding: 8px 5px;
-  color: var(--btn-gray);
+.icon-done:before {
+  content: "\e902";
 }
+
 .icon-delete:before {
   content: "\e901";
-}
-@media (any-hover: hover) {
-  .icon-delete:hover {
-    color: var(--red);
-  }
 }
 
 .icon-done,
 .icon-delete {
+  font-size: 18px;
+}
+
+.button-delete {
+  padding: 8px 5px;
+  color: var(--btn-gray);
+}
+@media (any-hover: hover) {
+  .button-delete:hover {
+    color: var(--red);
+  }
+}
+
+.button-done,
+.button-delete {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -234,32 +241,17 @@ header img {
       -ms-flex-align: center;
           align-items: center;
   gap: 4px;
+  font-size: 8px;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
   cursor: pointer;
-}
-.icon-done span,
-.icon-delete span {
-  font-family: "Roboto";
-  font-size: 8px;
-}
-
-.icon-done,
-.icon-delete {
-  font-size: 18px;
 }
 
 .clean-button {
   display: none;
 }
 .clean-button.visible-button {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.icon-clean {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -275,21 +267,19 @@ header img {
   margin: 25px auto 0 auto;
   padding: 5px;
   color: var(--clr-gray);
+  font-size: 12px;
+  text-transform: uppercase;
+  white-space: nowrap;
   cursor: pointer;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
-.icon-clean:before {
-  content: "\e900";
-}
-.icon-clean span {
-  font-family: "Roboto";
-  font-size: 12px;
-  text-transform: uppercase;
-}
 @media (any-hover: hover) {
-  .icon-clean:hover {
+  .clean-button.visible-button:hover {
     color: var(--red);
   }
+}
+.clean-button.visible-button .icon-clean:before {
+  content: "\e900";
 }
