@@ -130,27 +130,29 @@ header {
     align-items: center;
     gap: 10px;
 }
-.icon-done {
+.button-done {
     padding: 8px 13px;
     color: #fff;
     border-radius: 10px;
     background-color: var(--red);
 
-    &:before {
-        content: "\e902";
-    }
-
     &.checked {
         background-color: var(--green);
     }
 }
+.icon-done:before {
+    content: "\e902";
+}
+.icon-delete:before {
+    content: "\e901";
+}
+.icon-done,
 .icon-delete {
+    font-size: 18px;
+}
+.button-delete {
     padding: 8px 5px;
     color: var(--btn-gray);
-
-    &:before {
-        content: "\e901";
-    }
 
     @media (any-hover: hover) {
         &:hover {
@@ -158,56 +160,43 @@ header {
         }
     }
 }
-.icon-done,
-.icon-delete {
+.button-done,
+.button-delete {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
+    font-size: 8px;
     transition: all 0.3s;
     cursor: pointer;
-
-    span {
-        font-family: "Roboto";
-        font-size: 8px;
-    }
-}
-.icon-done,
-.icon-delete {
-    font-size: 18px;
 }
 .clean-button {
     display: none;
 
     &.visible-button {
         display: flex;
-    }
-}
-.icon-clean {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    width: 90px;
-    margin: 25px auto 0 auto;
-    padding: 5px;
-    color: var(--clr-gray);
-    cursor: pointer;
-    transition: all 0.3s;
-    
-    &:before {
-        content: "\e900";
-    }
-
-    span {
-        font-family: "Roboto";
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        width: 90px;
+        margin: 25px auto 0 auto;
+        padding: 5px;
+        color: var(--clr-gray);
         font-size: 12px;
         text-transform: uppercase;
-    }
-    
-    @media (any-hover: hover) {
-        &:hover {
-            color: var(--red);
+        white-space: nowrap;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        @media (any-hover: hover) {
+            &:hover {
+                color: var(--red);
+            }
+        }
+        .icon-clean {
+            &:before {
+                content: "\e900";
+            }
         }
     }
 }
