@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <title>Task 2.7</title>
+    </head>
+    <body>
+        <header>
+            <div class="header-container">
+                <h1>Where in the world?</h1>
+                <label class="switch">
+                    <input type="checkbox" class="switch-input">
+                    <span class="switch-slider"></span>
+                </label>
+            </div>
+            <div class="form-container">
+                <div class="search">
+                    <input id="countrySearch" type="text" placeholder="Search for a country...">
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-button">Region</button>
+                    <ul class="dropdown-list">
+                        <li class="dropdown-item active" data-value="All">All</li>
+                        <li class="dropdown-item" data-value="Africa">Africa</li>
+                        <li class="dropdown-item" data-value="Americas">Americas</li>
+                        <li class="dropdown-item" data-value="Asia">Asia</li>
+                        <li class="dropdown-item" data-value="Europe">Europe</li>
+                        <li class="dropdown-item" data-value="Oceania">Oceania</li>
+                    </ul>
+                    <input type="text" name="select-category" value="" class="dropdown-input-hidden">
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="contries-cards-container"></div>
+        </main>
+        <script src="js/script.js"></script>
+    </body>
+</html>
