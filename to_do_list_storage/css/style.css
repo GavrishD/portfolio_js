@@ -73,6 +73,15 @@ button {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Sansation fonts */
+@font-face {
+  font-family: "Sansation";
+  src: url("../fonts/sansation/SansationRegular.woff2") format("woff2"), url("../fonts/sansation/SansationRegular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --gray: #D2D2D2;
   --bg-input: #F0F5F8;
@@ -89,7 +98,7 @@ body {
   min-height: 100%;
   max-width: 640px;
   padding: 0 24px;
-  font: 14px/1.458 Arial, "Segoe UI", "Roboto", Helvetica, sans-serif;
+  font: 14px/1.458 "Sansation", sans-serif;
   font-weight: 400;
 }
 
