@@ -73,7 +73,18 @@ button {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Sansation fonts */
+.icon-clear:before {
+  content: "\e900";
+}
+
+.icon-delete:before {
+  content: "\e901";
+}
+
+.icon-safe:before {
+  content: "\e902";
+}
+
 @font-face {
   font-family: "Sansation";
   src: url("../fonts/sansation/SansationRegular.woff2") format("woff2"), url("../fonts/sansation/SansationRegular.woff") format("woff");
@@ -81,15 +92,15 @@ button {
   font-style: normal;
   font-display: swap;
 }
-
 :root {
-  --gray: #D2D2D2;
-  --bg-input: #F0F5F8;
-  --red: #FF0000;
-  --green: #00C45A;
-  --btn-gray: #949494;
-  --clr-gray: #989898;
-  --border-color: #5C5C5C;
+  --bg-body-color: #2F3640;
+  --gray: #BBC9DD;
+  --bg-input: #4A586E;
+  --red: #D5353F;
+  --green: #35D073;
+  --btn-gray: #CFCFCF;
+  --done-gray: #bababa;
+  --yellow: #FEB946;
 }
 
 body {
@@ -98,8 +109,10 @@ body {
   min-height: 100%;
   max-width: 640px;
   padding: 0 24px;
-  font: 14px/1.458 "Sansation", sans-serif;
+  font: 14px/1.458 "Sansation", sans-serif, sans-serif;
   font-weight: 400;
+  background-color: var(--bg-body-color);
+  color: #fff;
 }
 
 header {
@@ -109,7 +122,7 @@ header {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 35px 0;
+  padding: 45px 0;
 }
 header img {
   max-width: 120px;
@@ -135,6 +148,21 @@ header img {
   width: 100%;
   background-color: var(--bg-input);
   border-radius: 61px;
+}
+.task-form input::-webkit-input-placeholder {
+  color: #fff;
+}
+.task-form input::-moz-placeholder {
+  color: #fff;
+}
+.task-form input:-ms-input-placeholder {
+  color: #fff;
+}
+.task-form input::-ms-input-placeholder {
+  color: #fff;
+}
+.task-form input::placeholder {
+  color: #fff;
 }
 
 .task-button {
@@ -183,7 +211,7 @@ header img {
   cursor: pointer;
 }
 .todo-item.edit-item {
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--gray);
 }
 
 .todo-title {
@@ -191,7 +219,7 @@ header img {
   font-weight: 600;
 }
 .todo-title.todo-title-done {
-  color: var(--btn-gray);
+  color: var(--done-gray);
 }
 
 .todo-buttons {
@@ -275,7 +303,7 @@ header img {
   width: 90px;
   margin: 25px auto 0 auto;
   padding: 5px;
-  color: var(--clr-gray);
+  color: var(--yellow);
   font-size: 12px;
   text-transform: uppercase;
   white-space: nowrap;
