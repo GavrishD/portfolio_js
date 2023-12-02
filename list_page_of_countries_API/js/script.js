@@ -28,7 +28,7 @@ async function getCountries() {
         const response = await fetch(url);
         const data = await response.json();
         renderCards(data);
-        getCountrySearch(data);
+        searchCountries(data);
         filterRegion(data);
         getSelectedItem(data);
         // console.log(data);
@@ -44,7 +44,7 @@ function renderCards(countryInfo) {
         contriesCardHTML += `
             <div class="countries-item">
                 <img src="${item.flags.png}" alt="Country flag">
-                <div class="countrie-info">
+                <div class="country-info">
                     <h2>${item.name.official}</h2>
                     <div><span>Population:</span> ${item.population.toLocaleString()}</div>
                     <div><span>Region:</span> ${item.region}</div>
@@ -58,13 +58,13 @@ function renderCards(countryInfo) {
 }
 
 // Search country - input
-function getCountrySearch(nameCountries) {
+function searchCountries(infoCountries) {
     inputSearch.addEventListener('keypress', event => {
         if (event.key === "Enter") {
             event.preventDefault();
             const userInput = searchCountry.value.toLowerCase();
             console.log(userInput);
-            const filteredArrayCountries = nameCountries.filter((nameCountry) => {
+            const filteredArrayCountries = infoCountries.filter((nameCountry) => {
                 const letters = nameCountry.name.official.toLowerCase();
                 if (letters.indexOf(userInput) !== -1) {
                     return nameCountry;
@@ -109,7 +109,7 @@ for (let i = 0; i < dropDownListItems.length; i++) {
     dropDownListItems[i].addEventListener("click", function(event) {
         const activeClass = document.querySelectorAll('.active');
 
-        if (activeClass.length > 0) {
+        if (activeClass.length) {
             activeClass[0].className = activeClass[0].className.replace('active', '');
         }
         this.className += "active";
@@ -131,18 +131,18 @@ document.addEventListener("keydown", function (event) {
 });
 
 // Pressing Enter when the list of regions is open - select a region, arrows navigate through the list
-function getSelectedItem(nameRegion) {
+function getSelectedItem(regionName) {
     document.addEventListener("keydown", function (event) {
-        const dropDownListItemSelected = dropDownList.querySelector('li.active');
+        const selectedListItem = dropDownList.querySelector("li.active");
 
         if (dropDownList.classList.contains("dropdown-list") && dropDownBtn.classList.contains('dropdown-button--active')) {
             switch (event.key) {
                 case "Enter":
-                    dropDownBtn.innerText = dropDownListItemSelected.innerHTML;
-                    if (dropDownListItemSelected.innerHTML === "" || dropDownListItemSelected.innerHTML === "All") {
-                        renderCards(nameRegion);
+                    dropDownBtn.innerText = selectedListItem.innerHTML;
+                    if (selectedListItem.innerHTML === "" || selectedListItem.innerHTML === "All") {
+                        renderCards(regionName);
                     } else {
-                        const arrayFilterClickEnter = nameRegion.filter((item) => item.region === dropDownListItemSelected.innerHTML);
+                        const arrayFilterClickEnter = regionName.filter((item) => item.region === selectedListItem.innerHTML);
                         renderCards(arrayFilterClickEnter);
                     }
                     break;
