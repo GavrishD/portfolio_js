@@ -30,7 +30,7 @@ async function getCountries() {
         renderCards(data);
         searchCountries(data);
         filterRegion(data);
-        getSelectedItem(data);
+        selectItemByKey(data);
         // console.log(data);
     } catch (error) {
         console.log(error); 
@@ -58,13 +58,13 @@ function renderCards(countryInfo) {
 }
 
 // Search country - input
-function searchCountries(infoCountries) {
+function searchCountries(searchString) {
     inputSearch.addEventListener('keypress', event => {
         if (event.key === "Enter") {
             event.preventDefault();
             const userInput = searchCountry.value.toLowerCase();
             console.log(userInput);
-            const filteredArrayCountries = infoCountries.filter((nameCountry) => {
+            const filteredArrayCountries = searchString.filter((nameCountry) => {
                 const letters = nameCountry.name.official.toLowerCase();
                 if (letters.indexOf(userInput) !== -1) {
                     return nameCountry;
@@ -131,7 +131,7 @@ document.addEventListener("keydown", function (event) {
 });
 
 // Pressing Enter when the list of regions is open - select a region, arrows navigate through the list
-function getSelectedItem(regionName) {
+function selectItemByKey(regionName) {
     document.addEventListener("keydown", function (event) {
         const selectedListItem = dropDownList.querySelector("li.active");
 
