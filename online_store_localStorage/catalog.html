@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <title>Task 2.8</title>
+    </head>
+    <body>
+        <main>
+            <div class="page-title">
+                <div class="page-label">Home/All items</div>
+                <h1>All Items</h1>
+            </div>
+            <div class="fox-catalog-container">
+                <aside>
+                    <nav class="sidebar-menu">
+                        <div class="search">
+                            <input id="foxSearch" type="text" placeholder="Search">
+                        </div>
+                        <div class="fox-categories">
+                            <div class="title">Topic</div>
+                            <ul>
+                                <li data-value="All" class="active">All</li>
+                                <li data-value="Forest">Forest</li>
+                                <li data-value="Foxs kids">Foxs kids</li>
+                                <li data-value="Other">Other</li>
+                            </ul>
+                        </div>
+                        <div class="price-foxes">
+                            <div class="title">Price</div>
+                            <form class="foxes-sum" oninput="outputId.value = 'Value: $' + priceFox.value">
+                                <input type="range" name="priceFox" id="priceFox" step="10" min="0" max="120" value="0">
+                                <output for="priceFox" name="result" id="outputId">0</output>
+                            </form>
+                        </div>
+                    </nav>
+                </aside>
+                <div>
+                    <div class="fox-items"></div>
+                    <button class="shop-button">All foxes</button>
+                </div>
+            </div>
+        </main>
+        <script src="js/headerWhite.js"></script>
+        <script src="js/script.js"></script>
+        <script src="js/items.js"></script>
+        <script src="js/shoppingBasket.js"></script>
+        <script src="js/footer.js"></script>
+    </body>
+</html>
