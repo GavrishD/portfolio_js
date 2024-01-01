@@ -331,8 +331,7 @@ header.header-white {
     letter-spacing: 1.5px;
   }
 }
-.menu-list li span::before {
-  content: "×";
+.menu-list li span {
   width: 100%;
   height: 60px;
   color: #fff;
