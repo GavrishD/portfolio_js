@@ -2,8 +2,8 @@ const $ = document.querySelector.bind(document);
 
 const buttonMenuOpen = $(".icon-mobile-menu");
 
-const buttonBagOpen = $(".icon-shopping-basket");
-const buttonBagClose = $(".cart-header span");
+const buttonCartOpen = $(".icon-shopping-basket");
+const buttonCartClose = $(".cart-header span");
 const buttonShoppingCart = $(".header-userbag");
 
 // Hidden navigation menu----------------------------------------------------
@@ -18,10 +18,10 @@ function openMenu(e) {
 }
 
 // Hidden shopping basket----------------------------------------------------
-buttonBagOpen.addEventListener("click", openShoppingCart);
-buttonBagClose.addEventListener("click", openShoppingCart);
+buttonCartOpen.addEventListener("click", toggleShoppingCart);
+buttonCartClose.addEventListener("click", toggleShoppingCart);
 
-function openShoppingCart(e) {
+function toggleShoppingCart(e) {
     const targetElement = e.target;
     if (targetElement.closest(".icon-shopping-basket,.cart-header span")) {
         document.documentElement.classList.toggle("basket-open");
