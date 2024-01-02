@@ -9,7 +9,7 @@ const headerWhiteHTML = `
                     <li><a href="home.html">Mainpage</a></li>
                     <li><a href="history.html">Our history</a></li>
                     <li><a href="catalog.html">All items</a></li>
-                    <li><span></span></li>
+                    <li><span>×</span></li>
                 </ul>
             </nav>
             <div class="header-icons">
