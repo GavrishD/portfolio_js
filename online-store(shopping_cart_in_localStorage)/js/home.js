@@ -10,11 +10,8 @@ window.addEventListener("scroll", function () {
 
 // Validation email----------------------------------------------------------
 function isEmailValid(email) {
-    if (typeof email === 'string') {
-        const patternEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/;
-        return patternEmail.test(email);
-    }
-    return false;
+    const patternEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/;
+    return patternEmail.test(email);
 }
 
 inputEmail.addEventListener('change', (event) => {
@@ -29,4 +26,4 @@ inputEmail.addEventListener('change', (event) => {
         inputEmail.classList.remove("valid");
         inputError.classList.add('visible');
     }
-})
+});
