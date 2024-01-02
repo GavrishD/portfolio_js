@@ -4,7 +4,7 @@ const cardCartEmpty = $(".shopping-cart-empty");
 
 // Working with the cart and adding items to the cart------------------------
 let foxes = [];
-let price = [];
+let price = [0];
 
 if (localStorage.getItem('foxes') && localStorage.getItem('price')) {
     foxes = JSON.parse(localStorage.getItem('foxes'));
