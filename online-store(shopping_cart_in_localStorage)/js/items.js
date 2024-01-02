@@ -1,10 +1,11 @@
 const inputSearch = $(".search");
 const searchFox = $("#foxSearch");
-const allTheFoxes = $(".fox-items");
+const allFoxes = $(".fox-items");
 const buttonAllFoxes = $(".fox-catalog-container .shop-button");
 const rangeInput = document.querySelectorAll('input[type="range"]');
 
-const listOfAllCategories = document.querySelectorAll(".fox-categories li");
+const allCategoriesOfFoxes = document.querySelectorAll(".fox-categories li");
+const listOfAllFoxCategories = document.querySelector(".fox-categories ul");
 
 document.addEventListener("DOMContentLoaded", (e) => {
     loadFoxes();
@@ -13,14 +14,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
 // Animation of the "Add" button on the product card
 let selectedButton;
 
-allTheFoxes.onclick = function (event) {
-    let buttonAdd = event.target.closest(".fox-items button");
-    selected(buttonAdd);
-}
-
-function selected(button) {
-    selectedButton = button;
-    selectedButton.classList.add("selected");
+allFoxes.onclick = function (event) {
+    const buttonAdd = event.target.closest(".fox-items button");
+    buttonAdd.classList.add("selected");
 }
 
 // List of foxes
@@ -29,13 +25,13 @@ async function loadFoxes() {
         const response = await fetch("files/data/foxes.json", {
             method: "GET",
         });
-        const responseResult = await response.json();
-        renderCards(responseResult);
-        searchFoxes(responseResult);
-        selectCategory(responseResult);
-        openListUsingButton(responseResult);
-        filterFoxesByCost(responseResult);
-        // console.log(responseResult);
+        const infoFoxes = await response.json();
+        renderCards(infoFoxes);
+        searchFoxes(infoFoxes);
+        selectCategory(infoFoxes);
+        openListUsingButton(infoFoxes);
+        filterFoxesByCost(infoFoxes);
+        // console.log(infoFoxes);
     } catch (error) {
         console.log(error);
     }
@@ -43,9 +39,9 @@ async function loadFoxes() {
 
 // Render card with foxes HTML
 function renderCards(foxInfo) {
-    let foxesCardHTML = "";
-    allTheFoxes.innerHTML = foxInfo.map(fox => {
-        foxesCardHTML += `
+    let foxCardHTML = "";
+    allFoxes.innerHTML = foxInfo.map(fox => {
+        foxCardHTML += `
             <a href="" data-id="${fox.id}">
                 <div class="fox-media">
                     <img src="${fox.photo}" alt="Image of a fox for sale">
@@ -60,7 +56,7 @@ function renderCards(foxInfo) {
         `;
     });
 
-    allTheFoxes.innerHTML = foxesCardHTML;
+    allFoxes.innerHTML = foxCardHTML;
 }
 
 // Search fox - input
@@ -77,60 +73,50 @@ function searchFoxes(searchString) {
             });
             renderCards(filteredArrayFoxes);
             searchFox.value = '';
-
-            clearActiveCategory();
         }
     });
 }
 
-// Selecting an element from the list - category
-function selectCategory(fox) {
-    listOfAllCategories.forEach(function (element) {
-        element.addEventListener("click", function (event) {
-            event.stopPropagation();
-            listOfAllCategories.innerText = this.innerText;
-            listOfAllCategories.value = this.dataset.value;
-            // listOfAllCategories.classList.toggle('active');
+// When you click on a product category, we display the products on the page 
+// that correspond to the selected category
+function selectCategory(foxCollection) {
+    listOfAllFoxCategories.addEventListener('click', function(event) {
+        // event.stopPropagation();
+        const targetElement = event.target;
 
-            if (this.dataset.value === "All") {
-                renderCards(fox);
-                buttonAllFoxes.classList.remove("visible");
-            } else {
-                const arrayFilter = fox.filter((element) => element.category === this.dataset.value);
-                // console.log(arrayFilter);
-                renderCards(arrayFilter);
-                buttonAllFoxes.classList.add("visible");
-            }
-        })
-    })
-}
-
-// Clear active fox category 
-function clearActiveCategory() {
-    for (let i = 0; i < listOfAllCategories.length; i++) {
-        listOfAllCategories[i].classList.remove("active");
-    }
+        if (targetElement.dataset.value === "All") {
+            renderCards(foxCollection);
+            buttonAllFoxes.classList.remove("visible");
+        } else {
+            const foxFiltered = foxCollection.filter((element) => element.category === targetElement.dataset.value);
+            renderCards(foxFiltered);
+            buttonAllFoxes.classList.add("visible");
+        }
+    });
 }
 
 // Open the full list of foxes by clicking on the button - All foxes
 function openListUsingButton(foxInfo) {
     buttonAllFoxes.addEventListener("click", function (e) {
+        e.stopPropagation();
         renderCards(foxInfo);
         buttonAllFoxes.classList.remove("visible");
 
-        clearActiveCategory();
-    })
+        for (let i = 0; i < allCategoriesOfFoxes.length; i++) {
+            allCategoriesOfFoxes[i].classList.remove("active");
+        }
+    });
 }
 
 // Active item in the category 
-for (let i = 0; i < listOfAllCategories.length; i++) {
-    listOfAllCategories[i].addEventListener("click", function (event) {
+for (let i = 0; i < allCategoriesOfFoxes.length; i++) {
+    allCategoriesOfFoxes[i].addEventListener("click", function (event) {
         const activeClass = document.querySelectorAll('.active');
 
         if (activeClass.length) {
-            activeClass[0].className = activeClass[0].className.replace('active', '');
+            activeClass[0].classList.remove('active');
         }
-        this.className += "active";
+        this.classList += "active";
     });
 }
 
@@ -148,10 +134,7 @@ function filterFoxesByCost(cardFox) {
             } else {
                 renderCards(cardFox);
             }
-
-            clearActiveCategory();
         });
         $("#outputId").value = "Value: $" + e.value;
-        
     }
 }
