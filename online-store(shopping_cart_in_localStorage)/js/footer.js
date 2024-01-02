@@ -7,9 +7,9 @@ const footerHTML = `
                 <p>Lorem ipsum dolor sit amet consectetur consectetur</p>
                 <div class="number-tel">Call us : 8956 3254 7887</div>
                 <div class="contacts-social">
-                    <a href="" class="icon-instagram"></a>
-                    <a href="" class="icon-telegram"></a>
-                    <a href="" class="icon-twitter"></a>
+                    <a href="" arial-label="Go to the store's Instagram page" class="icon-instagram"></a>
+                    <a href="" arial-label="Go to the store's Telegram channel" class="icon-telegram"></a>
+                    <a href="" arial-label="Go to the store's Twitter page" class="icon-twitter"></a>
                 </div>
             </div>
             <div class="footer-items">
