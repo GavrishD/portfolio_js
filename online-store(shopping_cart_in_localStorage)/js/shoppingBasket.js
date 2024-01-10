@@ -40,7 +40,7 @@ shoppingCards.addEventListener("click", function (event) {
     // Tracking button clicks Minus
     if (targetItem.dataset.action === "minus") {
         // Checking that the counter is greater than 1
-        if (parseInt(counter.innerText) > 1) {
+        if (parseInt(counter.innerText) > '1') {
             counter.innerText = --counter.innerText;
 
             // Show the quantity of goods using the Plus/Minus button in the cart (for LocalStorage)
