@@ -1,7 +1,6 @@
 const shoppingCards = $(".shopping-cards");
 const cardCartEmpty = $(".shopping-cart-empty");
 
-
 // Working with the cart and adding items to the cart------------------------
 let foxes = [];
 let price = [0];
@@ -47,7 +46,7 @@ shoppingCards.addEventListener("click", function (event) {
             showQuantityOfGoods(event);
 
             // Show cart status - Empty / Full
-            toggleCartStatus();
+            // toggleCartStatus();
         } 
     }
 
@@ -122,6 +121,9 @@ function addProductCard(event, productId) {
 
     // Calculate the total value of the cart
     calcCartPrice();
+
+    // Show the number of items in the cart
+    showQuantityOfGoods();
 }
 
 function deleteProductCard(event, productId) {
@@ -142,16 +144,37 @@ function deleteProductCard(event, productId) {
     // Calculate the total value of the cart
     calcCartPrice();
 
+    // Show the number of items in the cart
+    showQuantityOfGoods();
+
     event.stopPropagation();
 }
 
 // Show cart status - Empty / Full
 function toggleCartStatus() {
-    if (shoppingCards.children.length > 0) {
-        cardCartEmpty.classList.add("invisible");
-    } else {
-        cardCartEmpty.classList.remove("invisible");
-    }
+  // const result = (shoppingCards.children.length > 0) ? cardCartEmpty.classList.add("invisible") : cardCartEmpty.classList.remove("invisible");
+    
+    cardCartEmpty.classList.remove("invisible");
+    if (foxes.length > 0) cardCartEmpty.classList.add("invisible");
+}
+
+// Calling a function => Display the number of items in the cart
+displayQuantity();
+
+// Display the number of items in the cart
+function displayQuantity() {
+    const headerCart = document.querySelector(".header-cart");
+    const cartQuantity = `<span class="cart-quantity">${foxes.length}</span>`;
+    headerCart.insertAdjacentHTML("beforeend", cartQuantity);
+}
+
+// Show the number of items in the cart
+function showQuantityOfGoods() {
+    const quantity = document.querySelector(".cart-quantity");
+    quantity.innerText = foxes.length.toString();
+
+    if (foxes.length === 0) quantity.classList.add("invisible");
+    if (foxes.length > 0) quantity.classList.remove("invisible");
 }
 
 // Calling a function => Add a block with the total cost in HTML
@@ -170,7 +193,6 @@ function calcCartPrice() {
         const amountElement = element.querySelector("[data-counter]");
         const priceElement = element.querySelector("[data-price]");
         currentPrice = parseInt(amountElement.innerText) * parseInt(priceElement.innerText);
-
         totalPrice += currentPrice;
     });
     price = totalPrice;
@@ -184,7 +206,7 @@ function addBlockWithTheTotalPrice() {
     const adjacentSumElement = document.querySelector(".cart-footer");
     const totalPriceHTML = `
         <div class="cart-title small">Total:</div>
-        <p>$<span>${price}</span>.00</p>
+        <p>$<span>${price}</span></p>
     `;
     adjacentSumElement.insertAdjacentHTML("afterbegin", totalPriceHTML);
 }
@@ -201,7 +223,7 @@ function renderProductCard(product) {
                 <img src="${product.photo}" alt="Image of a fox for sale">
                 <div class="cart-info">
                     <p>${product.name}</p>
-                    <p>$<span data-price>${product.price}</span>.00</p>
+                    <p>$<span data-price>${product.price}</span></p>
                 </div>
             </div>
             <div class="product-cart-control">
