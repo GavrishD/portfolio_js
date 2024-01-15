@@ -25,13 +25,13 @@ async function loadFoxes() {
         const response = await fetch("files/data/foxes.json", {
             method: "GET",
         });
-        const infoFoxes = await response.json();
-        renderCards(infoFoxes);
-        searchFoxes(infoFoxes);
-        selectCategory(infoFoxes);
-        openListUsingButton(infoFoxes);
-        filterFoxesByCost(infoFoxes);
-        // console.log(infoFoxes);
+        const foxesData = await response.json();
+        renderCards(foxesData);
+        searchFoxes(foxesData);
+        selectCategory(foxesData);
+        openListUsingButton(foxesData);
+        filterFoxesByCost(foxesData);
+        // console.log(foxesData);
     } catch (error) {
         console.log(error);
     }
