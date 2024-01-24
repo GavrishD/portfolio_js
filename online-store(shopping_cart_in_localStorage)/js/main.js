@@ -26,17 +26,19 @@ listPromise
 function renderCards(foxInfo) {
     const foxCardHTML = foxInfo.map((fox) => {
         return `
-            <a href="" data-id="${fox.id}" class="test">
-                <div class="fox-media">
-                    <img src="${fox.photo}" alt="Image of a fox for sale">
-                    <button data-cart type="button" onclick="addProductCard(event, '${fox.id}')">Add</button>
-                </div>
-                <div class="fox-content">
-                    <div class="name">${fox.name}</div>
-                    <div class="price">$<span>${fox.price}</span></div>
-                    <div class="category">${fox.category}</div>
-                </div>
-            </a>
+            <div class="fox-item">
+                <a href="" data-id="${fox.id}" class="test">
+                    <div class="fox-media">
+                        <img src="${fox.photo}" alt="Image of a fox for sale">
+                    </div>
+                    <div class="fox-content">
+                        <div class="name">${fox.name}</div>
+                        <div class="price">$<span>${fox.price}</span></div>
+                        <div class="category">${fox.category}</div>
+                    </div>
+                </a>
+                <button data-cart type="button" onclick="addProductCard(event, '${fox.id}')">Add</button>
+            </div>
         `;
     }).join("");
 
