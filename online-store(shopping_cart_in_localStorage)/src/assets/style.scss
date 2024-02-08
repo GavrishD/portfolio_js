@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,300,regular,500,600,700&display=swap');
+
+// Icons font-----------------------------------------------------------------------
+@font-face {
+    font-family: 'icons';
+    src:
+        url('../fonts/icons.ttf') format('truetype'),
+        url('../fonts/icons.woff') format('woff'),
+        url('../fonts/icons.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icons' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+}
+@mixin iconStyle {
+    font-family: 'icons' !important;
+    speak: never;
+    font-style: normal;
+}
+.icon-rating:before {
+    content: "\e908";
+}
+.icon-cart:before {
+    content: "\e905";
+}
+.icon-fox:before {
+    content: "\e900";
+}
+.icon-instagram:before {
+    content: "\e901";
+}
+.icon-mobile-menu:before {
+    content: "\e902";
+}
+.icon-remove:before {
+    content: "\e903";
+}
+.icon-search:before {
+    content: "\e904";
+}
+.icon-telegram:before {
+    content: "\e906";
+}
+.icon-twitter:before {
+    content: "\e907";
+}
+
+// Color-----------------------------------------------------------------------
+:root {
+    --orange: #CC5520;
+    --green: #35D073;
+    --red: #D5353F;
+    --header-main-page: rgba(0, 0, 0, 0.45);
+    --header-other-pages: rgba(255, 255, 255, 0.75);
+    --bg-mobile-menu: rgba(0, 0, 0, 0.75);
+    --light-gray: #969595;
+    --gray: #8C8C8C;
+    --dark-gray: #484848;
+    --border-color: #9A9494;
+    --item-color: #F4F4F4;
+    --bg-newsletter: #EFEFEF;
+    --footer-color: #191919;
+}
+
+
+// Common---------------------------------------------------------------------
+html {
+    scroll-behavior: smooth;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    font:
+        400 20px/1.5 "Montserrat", Arial, "Segoe UI", Helvetica,
+        sans-serif;
+    letter-spacing: 0.9px;
+}
+main {
+    flex: 1 1 auto;
+}
+[class*="-container"]{
+    max-width: 1190px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+h1, 
+h2,
+.cart-title,
+.cart-footer span,
+.cart-footer p {
+    font-family: 'Playfair+Display';
+    font-weight: 700;
+    color: #000;
+}
+.cart-info span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+}
+.page-title {
+    position: relative;
+    text-align: center;
+    top: 116px;
+    padding: 50px 10px;
+
+    &::after {
+        z-index: -1;
+        content:'';
+        background-color: var(--bg-newsletter);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .page-label {
+        color: var(--light-gray);
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    h1 {
+        font-size: 50px;
+        font-weight: 700;
+    }
+
+    @media (max-width: 640px) {
+        top: 0;
+    }
+}

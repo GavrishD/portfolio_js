@@ -1,0 +1,41 @@
+.history-items-container {
+    position: relative;
+    top: 116px;
+    padding: 110px 10px 150px 10px;
+
+    @media (max-width: 640px) {
+        top: 0;
+        padding: 30px 10px;
+    }
+}
+.history-item {
+    display: flex;
+    gap: 50px;
+
+    &:nth-child(2) {
+        flex-direction: row-reverse;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 50px;
+    }
+
+    @media (max-width: 1024px) {
+        flex-direction: column;
+
+        &:nth-child(2) {
+            flex-direction: column;
+        }
+    }
+}
+.history-content {
+    h2 {
+        margin-bottom: 35px;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    p:not(:last-child) {
+        margin-bottom: 30px;
+    }
+}
