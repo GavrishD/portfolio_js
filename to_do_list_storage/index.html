@@ -11,11 +11,9 @@
                     <a href="#"><img src="img/todo_list.png" alt="To Do list"></a>
             </header>
             <main>
-                <form id="todoForm">
-                    <div class="task-form">
-                        <input id="taskInput" type="text" required="required" placeholder="Enter your note...">
-                        <button type="submit" class="task-button">Save</button>
-                    </div>
+                <form id="todoForm" method="post">
+                    <input id="taskInput" type="text" required="required" placeholder="Enter your note...">
+                    <button type="submit" class="task-button">Save</button>
                 </form>
                 <div id="emptyList" class="empty-list">To-do list is empty</div>
                 <ul id="tasksList"></ul>
