@@ -128,7 +128,7 @@ header img {
   max-width: 120px;
 }
 
-.task-form {
+#todoForm {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -141,7 +141,7 @@ header img {
   border-radius: 61px;
   background-color: var(--bg-input);
 }
-.task-form input {
+#todoForm input {
   padding: 0 20px;
   border: none;
   outline: none;
@@ -149,19 +149,19 @@ header img {
   background-color: var(--bg-input);
   border-radius: 61px;
 }
-.task-form input::-webkit-input-placeholder {
+#todoForm input::-webkit-input-placeholder {
   color: #fff;
 }
-.task-form input::-moz-placeholder {
+#todoForm input::-moz-placeholder {
   color: #fff;
 }
-.task-form input:-ms-input-placeholder {
+#todoForm input:-ms-input-placeholder {
   color: #fff;
 }
-.task-form input::-ms-input-placeholder {
+#todoForm input::-ms-input-placeholder {
   color: #fff;
 }
-.task-form input::placeholder {
+#todoForm input::placeholder {
   color: #fff;
 }
 
