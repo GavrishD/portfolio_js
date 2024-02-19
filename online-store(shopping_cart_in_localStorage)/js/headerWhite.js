@@ -5,8 +5,8 @@ const headerWhiteHTML = `
             <div class="header-logo logo-color"></div>
             <nav class="header-menu">
                 <ul class="menu-list">
-                    <li><a href="home.html">Shop</a></li>
-                    <li><a href="home.html">Mainpage</a></li>
+                    <li><a href="index.html">Shop</a></li>
+                    <li><a href="index.html">Mainpage</a></li>
                     <li><a href="history.html">Our history</a></li>
                     <li><a href="main.html">All items</a></li>
                     <li><span>×</span></li>
